@@ -5,6 +5,10 @@
   transform: translateX(-50%) translateY(-50%);
   min-width: 100%;
   min-height: 100%;
+  display: none;
+}
+#pairings:target ~ .bgVideo {
+	display: block;
 }
 #pairings {
   color: #fff;

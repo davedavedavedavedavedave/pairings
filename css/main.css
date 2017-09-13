@@ -12,11 +12,11 @@
   font-family: 'thronesdb';
   font-weight: 400;
   font-style: normal;
-  src: url('./fonts/thronesdb/thronesdb.eot');
-  src: url('./fonts/thronesdb/thronesdb.eot#iefix') format('embedded-opentype'),
-       url('./fonts/thronesdb/thronesdb.ttf') format('truetype'),
-       url('./fonts/thronesdb/thronesdb.woff') format('woff'),
-       url('./fonts/thronesdb/thronesdb.svg#thronesdb') format('svg');
+  src: url('./fonts/thronesdb.eot');
+  src: url('./fonts/thronesdb.eot#iefix') format('embedded-opentype'),
+       url('./fonts/thronesdb.ttf') format('truetype'),
+       url('./fonts/thronesdb.woff') format('woff'),
+       url('./fonts/thronesdb.svg#thronesdb') format('svg');
 }
 
 html, body {
@@ -25,12 +25,14 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  font-size: 30px;
+  background: #000;
 }
 h1 {
   font-family: CardoBold;
   font-weight: bold;
   text-align: center;
-  font-size: 50px;
+  font-size: 3rem;
   margin: 0;
   padding: 0;
   position: fixed;
@@ -38,7 +40,6 @@ h1 {
   top: 0;
   width: 100%;
 }
-
 #pairings:target + #config,
 #pairings {
   display: none;
@@ -54,9 +55,25 @@ h1 {
   height: 100%;
   z-index: 10;
   box-sizing: border-box;
-  padding-top: 50px;
+  padding-top: 3.8rem;
+  overflow: hidden;
+  color: #fff;
 }
-
+#pairings > a {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: white;
+  background: black;
+  border: 1px solid white;
+  opacity: 0;
+  transition: opacity .2s ease;
+  z-index: 100;
+  padding: .2rem;
+}
+#pairings > a:hover {
+  opacity: 1;
+}
 .pairings {
   list-style: none;
   margin: 0;
@@ -67,6 +84,112 @@ h1 {
   flex-wrap: wrap;
 }
 .pairings > li {
-  margin: 5px;
-  border: 2px solid white;
+  margin: .5rem;
+  padding: 0 3rem 0 2rem;
+  position: relative;
+}
+.table {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  background: #a99560;
+  color: #000;
+  text-align: center;
+  border-radius: 0 .2rem .2rem 0;
+  border: 1px solid white;
+  padding: .2rem 0;
+}
+.p1_house {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2rem;
+  font-size: 1.2rem;
+  border-radius: .2rem 0 0 .2rem;
+  text-align: center;
+  padding: .2rem 0;
+  border: 1px solid white;
+  border-right: none;
+}
+.p2_house {
+  display: none;
+}
+.p2_name::before {
+  content: "vs. ";
+  padding-left: .4rem;
+}
+.p2_name {
+  display: none;
+  font-size: .75rem;
+  padding: 0 .2rem .2rem;
+  border-bottom: 1px solid white;
+}
+.p1_name {
+  display: block;
+  padding: .2rem .8rem .2rem .2rem;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.p1_house.icon-greyjoy,
+.p1_house.icon-greyjoy ~ .p2_name,
+.p1_house.icon-greyjoy + .p1_name {
+  background: #1d7a99;
+  color: #fff;
+}
+.p1_house.icon-targaryen,
+.p1_house.icon-targaryen ~ .p2_name,
+.p1_house.icon-targaryen + .p1_name {
+  background: #1c1c1c;
+  color: #fff;
+}
+.p1_house.icon-lannister,
+.p1_house.icon-lannister ~ .p2_name,
+.p1_house.icon-lannister + .p1_name {
+  background: #c00106;
+  color: #fff;
+}
+.p1_house.icon-tyrell,
+.p1_house.icon-tyrell ~ .p2_name,
+.p1_house.icon-tyrell + .p1_name {
+  background: #509f16;
+  color: #fff;
+}
+.p1_house.icon-baratheon,
+.p1_house.icon-baratheon ~ .p2_name,
+.p1_house.icon-baratheon + .p1_name {
+  background: #e3d852;
+  color: #000;
+}
+.p1_house.icon-stark,
+.p1_house.icon-stark ~ .p2_name,
+.p1_house.icon-stark + .p1_name {
+  background: #cfcfcf;
+  color: #000;
+}
+.p1_house.icon-martell,
+.p1_house.icon-martell ~ .p2_name,
+.p1_house.icon-martell + .p1_name {
+  background: #e89521;
+  color: #000;
+}
+.p1_house.icon-thenightswatch,
+.p1_house.icon-thenightswatch ~ .p2_name,
+.p1_house.icon-thenightswatch + .p1_name {
+  background: #7a7a7a;
+  color: #000;
+}
+.show_opponent .p1_name {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.show_opponent .p2_name {
+  display: block;
+}
+.show_opponent .table,
+.show_opponent .p1_house {
+  line-height: 2rem;
 }

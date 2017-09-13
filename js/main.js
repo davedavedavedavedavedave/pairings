@@ -2,7 +2,25 @@
   const url = new URL(location.href);
   const tournament_id = +url.searchParams.get('tournament_id');
   const theme = url.searchParams.get('theme');
+  const show_opponent = !!url.searchParams.get('show_opponent');
+  const scroll_speed = +url.searchParams.get('scroll_speed') || 100;
   const pairingEl = document.getElementById('pairings');
+
+  const autoScroll = function (el, speed, lastTime, direction) {
+    let now = Date.now();
+    let scrollBy = (direction > 0 ? speed : el.scrollLeftMax) / 1000 * (now - lastTime);
+    el.scrollTo(el.scrollLeft + scrollBy * direction, 0);
+    if (el.scrollLeft >= el.scrollLeftMax || el.scrollLeft <= 0) {
+      direction *= -1;
+      window.setTimeout(() => {
+        autoScroll(el, speed, now + 950, direction);
+      }, 1000)
+    } else {
+      window.requestAnimationFrame(() => {
+        autoScroll(el, speed, now, direction);
+      });
+    }
+  }
   
   // prefill inputs
   for (let p of url.searchParams) {
@@ -33,21 +51,11 @@
           .map(item => {
             let tmp;
             
-            tmp = item.p1_id;
-            item.p1_id = item.p2_id;
-            item.p2_id = tmp;
-            tmp = item.p1_name;
-            item.p1_name = item.p2_name;
-            item.p2_name = tmp;
-            tmp = item.p1_house;
-            item.p1_house = item.p2_house;
-            item.p2_house = tmp;
-            tmp = item.p1_agenda;
-            item.p1_agenda = item.p2_agenda;
-            item.p2_agenda = tmp;
-            tmp = item.p1_points;
-            item.p1_points = item.p2_points;
-            item.p2_points = tmp;
+            tmp = item.p1_id;     item.p1_id     = item.p2_id;     item.p2_id     = tmp;
+            tmp = item.p1_name;   item.p1_name   = item.p2_name;   item.p2_name   = tmp;
+            tmp = item.p1_house;  item.p1_house  = item.p2_house;  item.p2_house  = tmp;
+            tmp = item.p1_agenda; item.p1_agenda = item.p2_agenda; item.p2_agenda = tmp;
+            tmp = item.p1_points; item.p1_points = item.p2_points; item.p2_points = tmp;
             
             return item;
           })
@@ -65,11 +73,13 @@
         
         // create HTML from pairings
         let html = '<h1>Pairings Round <span class="round_number">' + pairings[0].round_number + '</span></h1>';
-        html += '<ol class="pairings">';
+        html += '<ol class="pairings' + (show_opponent ? ' show_opponent' : ' hide_opponent') + '">';
         html += pairings.map(item => {
             let html = '<li>';
+            html += '<span class="table">' + (item.p2_id < 0 ? 'BYE' : item.table_number) + '</span>';
+            html += '<span class="p1_house icon-' + item.p1_house.toLowerCase().replace(/[ ']/g, '').replace(/nightswatch$/, 'thenightswatch') + '"></span>';
             html += '<span class="p1_name">' + item.p1_name + '</span>';
-            html += '<span class="table">' + item.table_number + '</span>';
+            html += '<span class="p2_house icon-' + (item.p2_house || '').toLowerCase().replace(/[ ']/g, '').replace(/nightswatch$/, 'thenightswatch') + '"></span>';
             html += '<span class="p2_name">' + item.p2_name + '</span>';
             html += '</li>';
             return html;
@@ -77,6 +87,8 @@
         html += '</ol>';
         pairingEl.innerHTML += html;
         pairingEl.className = '';
+
+        autoScroll(pairingEl, 100, Date.now(), 1)
       })
       .catch(error => console.error(error));
   }
