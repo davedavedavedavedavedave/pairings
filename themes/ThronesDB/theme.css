@@ -2,11 +2,11 @@
   font-family: 'Crimson';
   font-weight: normal;
   font-style: normal;
-  src: url('fonts/Crimson-Text-regular.eot');
-  src: url('fonts/Crimson-Text-regular.eot#iefix') format('embedded-opentype'),
-       url('fonts/Crimson-Text-regular.ttf') format('truetype'),
-       url('fonts/Crimson-Text-regular.woff') format('woff'),
-       url('fonts/Crimson-Text-regular.svg') format('svg');
+  src: url('assets/fonts/Crimson-Text-regular.eot');
+  src: url('assets/fonts/Crimson-Text-regular.eot#iefix') format('embedded-opentype'),
+       url('assets/fonts/Crimson-Text-regular.ttf') format('truetype'),
+       url('assets/fonts/Crimson-Text-regular.woff') format('woff'),
+       url('assets/fonts/Crimson-Text-regular.svg') format('svg');
 }
 
 #pairings {
