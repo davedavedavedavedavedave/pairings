@@ -46,7 +46,7 @@
         // request pairings
         helper.request({
           method: 'GET',
-          url: 'http://dev.thejoustingpavilion.com/api/v2/json/games?tournament_id=' + tournament_id + '&current_only=1'
+          url: 'http://thejoustingpavilion.com/api/v2/json/games?tournament_id=' + tournament_id + '&current_only=1'
         })
       ])
       // after everything loaded, hook up js theme and parse pairings
