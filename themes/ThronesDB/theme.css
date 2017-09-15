@@ -51,7 +51,7 @@
 }
 .pairings > li {
   margin: .5rem;
-  padding: 0 3rem 0 2rem;
+  padding: 0 2.5rem 0 2rem;
   position: relative;
 }
 .table {
@@ -59,13 +59,14 @@
   right: 0;
   top: 0;
   bottom: 0;
-  width: 3rem;
+  width: 2.5rem;
   background: #a99560;
   color: #000;
   text-align: center;
   border-radius: 0 .2rem .2rem 0;
   border: 1px solid white;
-  padding: .2rem 0;
+  box-sizing: border-box;
+  padding-top: .1rem;
 }
 .p1_house {
   position: absolute;
@@ -76,7 +77,6 @@
   font-size: 1.2rem;
   border-radius: .2rem 0 0 .2rem;
   text-align: center;
-  padding: .2rem 0;
   border: 1px solid white;
   border-right: none;
 }
@@ -103,7 +103,7 @@
 }
 .p1_name {
   display: block;
-  padding: .2rem .8rem .2rem .2rem;
+  padding: .1rem .8rem .2rem .2rem;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
 }
@@ -174,5 +174,6 @@
 }
 .show_opponent .table,
 .show_opponent .p1_house {
-  line-height: 2rem;
+  padding-top: 0;
+  line-height: 2.5rem;
 }

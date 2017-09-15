@@ -8,14 +8,12 @@
        url('./fonts/thronesdb.woff') format('woff'),
        url('./fonts/thronesdb.svg#thronesdb') format('svg');
 }
-
 html, body {
   overflow: hidden;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  font-size: 30px;
 }
 h1 {
   font-weight: bold;
@@ -34,4 +32,21 @@ h1 {
 }
 #pairings:target {
   display: block;
+}
+#config {
+  font-size: 16px;
+  padding: 16px;
+}
+.set {
+  display: flex;
+  margin-bottom: 8px;
+}
+.set label {
+  width: 250px;
+  text-align: right;
+  padding-right: 10px;
+  box-sizing: border-box;
+}
+.set >:first-child:not(label) {
+  margin-left: 250px;
 }

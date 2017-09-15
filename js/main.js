@@ -3,14 +3,20 @@
   const tournament_id = +url.searchParams.get('tournament_id');
   const theme = url.searchParams.get('theme');
   const show_opponent = !!url.searchParams.get('show_opponent');
-  const scroll_speed = +url.searchParams.get('scroll_speed') || 100;
+  const auto_scroll = !!url.searchParams.get('auto_scroll');
+  const scroll_speed = +url.searchParams.get('scroll_speed');
+  const base_font_size = +url.searchParams.get('base_font_size');
   const pairingEl = document.getElementById('pairings');
 
+  document.documentElement.style.fontSize = base_font_size + 'px';
+
+  // function that handles auto scrolling
   const autoScroll = function (el, speed, lastTime, direction) {
     let now = Date.now();
     let scrollBy = (direction > 0 ? speed : el.scrollLeftMax) / 1000 * (now - lastTime);
     el.scrollTo(el.scrollLeft + scrollBy * direction, 0);
     if (el.scrollLeft >= el.scrollLeftMax || el.scrollLeft <= 0) {
+      // if at start or end of list, wait a second before changing direction and continue to scroll
       direction *= -1;
       window.setTimeout(() => {
         autoScroll(el, speed, now + 950, direction);
@@ -46,8 +52,7 @@
       // after everything loaded, hook up js theme and parse pairings
       .then(values => {
         // parse array of pairings twice. First time p1 and p2 get switched, so we have one array element for each player individually
-        let pairings = JSON.parse(values[2]);
-        pairings = pairings
+        let pairings = JSON.parse(values[2])
           .map(item => {
             let tmp;
             
@@ -88,7 +93,10 @@
         pairingEl.innerHTML += html;
         pairingEl.className = '';
 
-        //autoScroll(pairingEl, 100, Date.now(), 1)
+        // if requested, start auto scrolling
+        if (auto_scroll) {
+          autoScroll(pairingEl, scroll_speed, Date.now(), 1)
+        }
       })
       .catch(error => console.error(error));
   }

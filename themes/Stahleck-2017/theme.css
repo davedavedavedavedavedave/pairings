@@ -1,0 +1,16 @@
+@import "../ThronesDB/theme.css";
+
+#pairings {
+  background-image: url('assets/img/bg.jpg');
+  background-size: cover;
+}
+h1 {
+  text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 0 0 .2rem #000 ;
+  background-image: url('assets/img/logo.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.pairings > li {
+  box-shadow: .1rem .1rem .2rem rgba(0, 0, 0, 1);
+  border-radius: .2rem;
+}

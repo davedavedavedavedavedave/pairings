@@ -22,14 +22,27 @@
         <input type="number" id="tournament_id" name="tournament_id" />
       </div>
       <div class="set">
+        <label for="theme">Theme</label>
+        <select id="theme" name="theme">
+          <option value="ThronesDB" selected>ThronesDB</option>
+          <option value="Stahleck-2017">Stahleck 2017</option>
+        </select>
+      </div>
+      <div class="set">
         <label for="show_opponent">Show opponent</label>
         <input type="checkbox" id="show_opponent" name="show_opponent" />
       </div>
       <div class="set">
-        <label for="theme">Theme</label>
-        <select id="theme" name="theme">
-          <option value="ThronesDB" selected>ThronesDB</option>
-        </select>
+        <label for="auto_scroll">Auto Scroll</label>
+        <input type="checkbox" id="auto_scroll" name="auto_scroll" />
+      </div>
+      <div class="set">
+        <label for="scroll_speed">Scroll Speed</label>
+        <input type="number" id="scroll_speed" name="scroll_speed" value="100" min="1" />
+      </div>
+      <div class="set">
+        <label for="base_font_size">Base Font Size</label>
+        <input type="number" id="base_font_size" name="base_font_size" value="30" min="1" />
       </div>
       <div class="set">
         <button type="submit">Submit</button>

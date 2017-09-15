@@ -37,18 +37,7 @@ const helper = (function () {
     });
   };
 
-  // load CSS
-  o.loadCSS = (path) => {
-    return new Promise((resolve, reject) => {
-      let link = document.createElement('link');
-      link.href = path;
-      link.rel = "stylesheet";
-      document.head.appendChild(link);
-      resolve();
-    });
-  };
-
-  // load CSS
+  // load JS
   o.loadJS = (path) => {
     return new Promise((resolve, reject) => {
       let script = document.createElement('script');
