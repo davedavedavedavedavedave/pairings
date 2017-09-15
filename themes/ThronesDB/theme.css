@@ -1,0 +1,178 @@
+@font-face {
+  font-family: 'Crimson';
+  font-weight: normal;
+  font-style: normal;
+  src: url('fonts/Crimson-Text-regular.eot');
+  src: url('fonts/Crimson-Text-regular.eot#iefix') format('embedded-opentype'),
+       url('fonts/Crimson-Text-regular.ttf') format('truetype'),
+       url('fonts/Crimson-Text-regular.woff') format('woff'),
+       url('fonts/Crimson-Text-regular.svg') format('svg');
+}
+
+#pairings {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  box-sizing: border-box;
+  padding-top: 3.8rem;
+  overflow: hidden;
+  color: #fff;
+  background: #000;
+  font-family: Crimson, serif;
+}
+#pairings > a {
+  position: fixed;
+  left: 0;
+  top: 0;
+  color: white;
+  border: 1px solid white;
+  opacity: 0;
+  transition: opacity .2s ease;
+  z-index: 100;
+  padding: .2rem;
+}
+#pairings > a:hover {
+  opacity: 1;
+}
+#pairings h1 {
+  font-weight: normal;
+}
+.pairings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.pairings > li {
+  margin: .5rem;
+  padding: 0 3rem 0 2rem;
+  position: relative;
+}
+.table {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 3rem;
+  background: #a99560;
+  color: #000;
+  text-align: center;
+  border-radius: 0 .2rem .2rem 0;
+  border: 1px solid white;
+  padding: .2rem 0;
+}
+.p1_house {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2rem;
+  font-size: 1.2rem;
+  border-radius: .2rem 0 0 .2rem;
+  text-align: center;
+  padding: .2rem 0;
+  border: 1px solid white;
+  border-right: none;
+}
+.p2_house {
+  display: none;
+  float: left;
+  font-size: .75rem;
+  padding-bottom: .2rem;
+  border-bottom: 1px solid white;
+}
+.p2_house::after {
+  content: "vs.";
+  padding-left: .7rem;
+  float: left;
+  padding-right: .2rem;
+}
+.p2_name {
+  display: none;
+  font-size: .75rem;
+  padding: 0 .2rem .2rem;
+  border-bottom: 1px solid white;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.p1_name {
+  display: block;
+  padding: .2rem .8rem .2rem .2rem;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
+
+.p1_house.icon-greyjoy,
+.p1_house.icon-greyjoy ~ .p2_house,
+.p1_house.icon-greyjoy ~ .p2_name,
+.p1_house.icon-greyjoy + .p1_name {
+  background: #1d7a99;
+  color: #fff;
+}
+.p1_house.icon-targaryen,
+.p1_house.icon-targaryen ~ .p2_house,
+.p1_house.icon-targaryen ~ .p2_name,
+.p1_house.icon-targaryen + .p1_name {
+  background: #1c1c1c;
+  color: #fff;
+}
+.p1_house.icon-lannister,
+.p1_house.icon-lannister ~ .p2_house,
+.p1_house.icon-lannister ~ .p2_name,
+.p1_house.icon-lannister + .p1_name {
+  background: #c00106;
+  color: #fff;
+}
+.p1_house.icon-tyrell,
+.p1_house.icon-tyrell ~ .p2_house,
+.p1_house.icon-tyrell ~ .p2_name,
+.p1_house.icon-tyrell + .p1_name {
+  background: #509f16;
+  color: #fff;
+}
+.p1_house.icon-baratheon,
+.p1_house.icon-baratheon ~ .p2_house,
+.p1_house.icon-baratheon ~ .p2_name,
+.p1_house.icon-baratheon + .p1_name {
+  background: #e3d852;
+  color: #000;
+}
+.p1_house.icon-stark,
+.p1_house.icon-stark ~ .p2_house,
+.p1_house.icon-stark ~ .p2_name,
+.p1_house.icon-stark + .p1_name {
+  background: #cfcfcf;
+  color: #000;
+}
+.p1_house.icon-martell,
+.p1_house.icon-martell ~ .p2_house,
+.p1_house.icon-martell ~ .p2_name,
+.p1_house.icon-martell + .p1_name {
+  background: #e89521;
+  color: #000;
+}
+.p1_house.icon-thenightswatch,
+.p1_house.icon-thenightswatch ~ .p2_house,
+.p1_house.icon-thenightswatch ~ .p2_name,
+.p1_house.icon-thenightswatch + .p1_name {
+  background: #7a7a7a;
+  color: #000;
+}
+.show_opponent .p1_name {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+.show_opponent .p2_house,
+.show_opponent .p2_name {
+  display: block;
+}
+.show_opponent .table,
+.show_opponent .p1_house {
+  line-height: 2rem;
+}

@@ -1,5 +1,5 @@
-[class^="icon-"],
-[class*=" icon-"] {
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
     font-family: 'thronesdb';
     speak: none;
     font-style: normal;

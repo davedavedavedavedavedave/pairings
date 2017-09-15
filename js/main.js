@@ -88,7 +88,7 @@
         pairingEl.innerHTML += html;
         pairingEl.className = '';
 
-        autoScroll(pairingEl, 100, Date.now(), 1)
+        //autoScroll(pairingEl, 100, Date.now(), 1)
       })
       .catch(error => console.error(error));
   }
