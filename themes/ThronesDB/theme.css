@@ -50,9 +50,10 @@
   flex-wrap: wrap;
 }
 .pairings > li {
-  margin: .5rem;
+  margin: 0;
   padding: 0 2.5rem 0 2rem;
   position: relative;
+  border: .5rem solid transparent;
 }
 .table {
   position: absolute;
