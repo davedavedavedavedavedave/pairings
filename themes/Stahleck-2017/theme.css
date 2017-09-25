@@ -16,12 +16,10 @@
   background-size: cover;
 }
 #pairings h1 {
-	font-family: Schwabacher;
-	height: 4rem;
-	font-size: 5rem;
-	line-height: 3rem;
-}
-h1 {
+  font-family: Schwabacher;
+  height: 4rem;
+  font-size: 5rem;
+  line-height: 3rem;
   text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 0 0 .2rem #000 ;
   background-image: url('assets/img/logo.png');
   background-repeat: no-repeat;
