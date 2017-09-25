@@ -13,9 +13,9 @@
   // function that handles auto scrolling
   const autoScroll = function (el, speed, lastTime, direction) {
     let now = Date.now();
-    let scrollBy = (direction > 0 ? speed : el.scrollLeftMax) / 1000 * (now - lastTime);
+    let scrollBy = (direction > 0 ? speed : (el.scrollWidth - el.clientWidth)) / 1000 * (now - lastTime);
     el.scrollTo(el.scrollLeft + scrollBy * direction, 0);
-    if (el.scrollLeft >= el.scrollLeftMax || el.scrollLeft <= 0) {
+    if (el.scrollLeft >= (el.scrollWidth - el.clientWidth) || el.scrollLeft <= 0) {
       // if at start or end of list, wait a second before changing direction and continue to scroll
       direction *= -1;
       window.setTimeout(() => {
