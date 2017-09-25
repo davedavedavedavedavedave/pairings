@@ -1,8 +1,25 @@
 @import "../ThronesDB/theme.css";
 
+@font-face {
+  font-family: 'Schwabacher';
+  font-weight: normal;
+  font-style: normal;
+  src: url('assets/fonts/schwabacher.eot');
+  src: url('assets/fonts/schwabacher.eot#iefix') format('embedded-opentype'),
+       url('assets/fonts/schwabacher.ttf') format('truetype'),
+       url('assets/fonts/schwabacher.woff') format('woff'),
+       url('assets/fonts/schwabacher.svg') format('svg');
+}
+
 #pairings {
   background-image: url('assets/img/bg.jpg');
   background-size: cover;
+}
+#pairings h1 {
+	font-family: Schwabacher;
+	height: 4rem;
+	font-size: 5rem;
+	line-height: 3rem;
 }
 h1 {
   text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 0 0 .2rem #000 ;
@@ -19,4 +36,5 @@ h1 {
   right: 0;
   box-shadow: .1rem .1rem .2rem rgba(0, 0, 0, 1);
   border-radius: .2rem;
+  z-index: -1;
 }
