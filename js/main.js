@@ -67,7 +67,7 @@
           .filter(item => item.p1_id > -1)
           .concat(JSON.parse(values[2]))
           .sort((a, b) => {
-            if (a.p1_name > b.p1_name) {
+            if (a.p1_name.toUpperCase() > b.p1_name.toUpperCase()) {
               return 1;
             } else if (a.p1_name < b.p1_name) {
               return -1;
