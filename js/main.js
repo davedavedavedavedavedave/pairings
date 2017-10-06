@@ -2,12 +2,12 @@
   const url = new URL(location.href);
   const tournament_id = +url.searchParams.get('tournament_id');
   const theme = url.searchParams.get('theme');
+  const file = url.searchParams.get('file');
   const show_opponent = !!url.searchParams.get('show_opponent');
   const auto_scroll = !!url.searchParams.get('auto_scroll');
   const scroll_speed = +url.searchParams.get('scroll_speed');
   const base_font_size = +url.searchParams.get('base_font_size');
   const pairingEl = document.getElementById('pairings');
-  const file = localStorage.getItem('file');
 
   document.documentElement.style.fontSize = base_font_size + 'px';
 
@@ -41,8 +41,8 @@
     if (file) {
       let reader = new FileReader();
       reader.addEventListener('load', () => {
-        //document.getElementsByName('file')[0].value = reader.result;
-        localStorage.setItem('file', reader.result)
+        // parse file and set hidden input's value
+        document.getElementsByName('file')[0].value = JSON.stringify(helper.parseTourneyMagistrateFile(reader.result));
       });
       reader.readAsText(file);
     }
@@ -58,46 +58,9 @@
       // load theme js
       helper.loadJS('themes/' + theme + '/theme.js')
     ];
-    if (!tournament_id) {
-      // parse passed file
-      let fileContent = file.trim().split(/\r?\n\r?\n/);
-      // first, create array with all players
-      const player = fileContent[0].split('\n').filter((val, idx) => {
-          if (idx === 0) { return false; }
-          return val.indexOf('	') > -1;
-        })
-        .sort((a, b) => {
-          if (a.toUpperCase() > b.toUpperCase()) {
-            return 1;
-          } else if (a.toUpperCase() < b.toUpperCase()) {
-            return -1;
-          } else {
-            return 0;
-          }
-        })
-        .map(val => {
-          return {
-            round_number: fileContent.length - 1,
-            p1_name: /^[^	]+(	[^	]+)?/.exec(val)[0].replace(/	/, ' '),
-            p1_house: /^(?:[^	]*	){3}([^	]+)/.exec(val)[1],
-            p2_id: 1
-          }
-        });
-      
-      // then, loop over all tables and adjust player array
-      let tables = fileContent[fileContent.length - 1]
-                    .replace(/--- ACTIVE ROUND\r?\n/, '')
-                    .split(/\r?\n-/)
-                    .filter(val => val.trim().length > 0)
-                    .map(val => val.replace(/	/, ' ').trim().split(/\r?\n/));
-      for (let table_number = 0; table_number < tables.length; table_number++) {
-        for (let i = 0; i < tables[table_number].length; i++) {
-          player.find(val => val.p1_name === tables[table_number][i].trim().replace(/	/, ' ')).table_number = table_number + 1;
-        }
-      }
-      
-      console.log(player);
-      promises.push(Promise.resolve(player));
+    if (!tournament_id && file) {
+      // pairings were passed as file
+      promises.push(Promise.resolve(JSON.parse(file)));
     } else {
       // request pairings from joustingpavilion
       promises.push(helper.request({
