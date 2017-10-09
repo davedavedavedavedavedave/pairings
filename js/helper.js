@@ -71,7 +71,7 @@ const helper = (function () {
         return {
           round_number: fileContent.length - 1,
           p1_name: /^[^	]+(	[^	]+)?/.exec(val)[0].replace(/	/, ' '),
-          p1_house: /^(?:[^	]*	){3}([^	]+)/.exec(val)[1],
+          p1_faction: /^(?:[^	]*	){3}([^	]+)/.exec(val)[1],
           p2_id: 1
         }
       });

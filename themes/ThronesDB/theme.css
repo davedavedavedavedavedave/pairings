@@ -69,7 +69,7 @@
   box-sizing: border-box;
   padding-top: .1rem;
 }
-.p1_house {
+.p1_faction {
   position: absolute;
   left: 0;
   top: 0;
@@ -81,14 +81,14 @@
   border: 1px solid white;
   border-right: none;
 }
-.p2_house {
+.p2_faction {
   display: none;
   float: left;
   font-size: .75rem;
   padding-bottom: .2rem;
   border-bottom: 1px solid white;
 }
-.p2_house::after {
+.p2_faction::after {
   content: "vs.";
   padding-left: .7rem;
   float: left;
@@ -109,59 +109,59 @@
   border-bottom: 1px solid white;
 }
 
-.p1_house.icon-greyjoy,
-.p1_house.icon-greyjoy ~ .p2_house,
-.p1_house.icon-greyjoy ~ .p2_name,
-.p1_house.icon-greyjoy + .p1_name {
+.p1_faction.icon-greyjoy,
+.p1_faction.icon-greyjoy ~ .p2_faction,
+.p1_faction.icon-greyjoy ~ .p2_name,
+.p1_faction.icon-greyjoy + .p1_name {
   background: #1d7a99;
   color: #fff;
 }
-.p1_house.icon-targaryen,
-.p1_house.icon-targaryen ~ .p2_house,
-.p1_house.icon-targaryen ~ .p2_name,
-.p1_house.icon-targaryen + .p1_name {
+.p1_faction.icon-targaryen,
+.p1_faction.icon-targaryen ~ .p2_faction,
+.p1_faction.icon-targaryen ~ .p2_name,
+.p1_faction.icon-targaryen + .p1_name {
   background: #1c1c1c;
   color: #fff;
 }
-.p1_house.icon-lannister,
-.p1_house.icon-lannister ~ .p2_house,
-.p1_house.icon-lannister ~ .p2_name,
-.p1_house.icon-lannister + .p1_name {
+.p1_faction.icon-lannister,
+.p1_faction.icon-lannister ~ .p2_faction,
+.p1_faction.icon-lannister ~ .p2_name,
+.p1_faction.icon-lannister + .p1_name {
   background: #c00106;
   color: #fff;
 }
-.p1_house.icon-tyrell,
-.p1_house.icon-tyrell ~ .p2_house,
-.p1_house.icon-tyrell ~ .p2_name,
-.p1_house.icon-tyrell + .p1_name {
+.p1_faction.icon-tyrell,
+.p1_faction.icon-tyrell ~ .p2_faction,
+.p1_faction.icon-tyrell ~ .p2_name,
+.p1_faction.icon-tyrell + .p1_name {
   background: #509f16;
   color: #fff;
 }
-.p1_house.icon-baratheon,
-.p1_house.icon-baratheon ~ .p2_house,
-.p1_house.icon-baratheon ~ .p2_name,
-.p1_house.icon-baratheon + .p1_name {
+.p1_faction.icon-baratheon,
+.p1_faction.icon-baratheon ~ .p2_faction,
+.p1_faction.icon-baratheon ~ .p2_name,
+.p1_faction.icon-baratheon + .p1_name {
   background: #e3d852;
   color: #000;
 }
-.p1_house.icon-stark,
-.p1_house.icon-stark ~ .p2_house,
-.p1_house.icon-stark ~ .p2_name,
-.p1_house.icon-stark + .p1_name {
+.p1_faction.icon-stark,
+.p1_faction.icon-stark ~ .p2_faction,
+.p1_faction.icon-stark ~ .p2_name,
+.p1_faction.icon-stark + .p1_name {
   background: #cfcfcf;
   color: #000;
 }
-.p1_house.icon-martell,
-.p1_house.icon-martell ~ .p2_house,
-.p1_house.icon-martell ~ .p2_name,
-.p1_house.icon-martell + .p1_name {
+.p1_faction.icon-martell,
+.p1_faction.icon-martell ~ .p2_faction,
+.p1_faction.icon-martell ~ .p2_name,
+.p1_faction.icon-martell + .p1_name {
   background: #e89521;
   color: #000;
 }
-.p1_house.icon-thenightswatch,
-.p1_house.icon-thenightswatch ~ .p2_house,
-.p1_house.icon-thenightswatch ~ .p2_name,
-.p1_house.icon-thenightswatch + .p1_name {
+.p1_faction.icon-thenightswatch,
+.p1_faction.icon-thenightswatch ~ .p2_faction,
+.p1_faction.icon-thenightswatch ~ .p2_name,
+.p1_faction.icon-thenightswatch + .p1_name {
   background: #7a7a7a;
   color: #000;
 }
@@ -169,12 +169,12 @@
   border-bottom: none;
   padding-bottom: 0;
 }
-.show_opponent .p2_house,
+.show_opponent .p2_faction,
 .show_opponent .p2_name {
   display: block;
 }
 .show_opponent .table,
-.show_opponent .p1_house {
+.show_opponent .p1_faction {
   padding-top: 0;
   line-height: 2.5rem;
 }

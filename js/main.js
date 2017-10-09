@@ -74,7 +74,7 @@
               
               tmp = item.p1_id;     item.p1_id     = item.p2_id;     item.p2_id     = tmp;
               tmp = item.p1_name;   item.p1_name   = item.p2_name;   item.p2_name   = tmp;
-              tmp = item.p1_house;  item.p1_house  = item.p2_house;  item.p2_house  = tmp;
+              tmp = item.p1_faction;  item.p1_faction  = item.p2_faction;  item.p2_faction  = tmp;
               tmp = item.p1_agenda; item.p1_agenda = item.p2_agenda; item.p2_agenda = tmp;
               tmp = item.p1_points; item.p1_points = item.p2_points; item.p2_points = tmp;
               
@@ -105,9 +105,9 @@
         html += pairings.map(item => {
             let html = '<li>';
             html += '<span class="table">' + (item.p2_id < 0 ? 'BYE' : item.table_number) + '</span>';
-            html += '<span class="p1_house icon-' + item.p1_house.toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
+            html += '<span class="p1_faction icon-' + item.p1_faction.toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
             html += '<span class="p1_name">' + item.p1_name + '</span>';
-            html += '<span class="p2_house icon-' + (item.p2_house || '').toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
+            html += '<span class="p2_faction icon-' + (item.p2_faction || '').toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
             html += '<span class="p2_name">' + item.p2_name + '</span>';
             html += '</li>';
             return html;
