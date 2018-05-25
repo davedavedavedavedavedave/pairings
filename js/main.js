@@ -63,10 +63,9 @@
       promises.push(Promise.resolve(JSON.parse(file)));
     } else {
       // request pairings from joustingpavilion
-      promises.push(helper.request({
-          method: 'GET',
-          url: 'https://demo.thejoustingpavilion.com/api/v3/games?current_only=1&tournament_id=' + tournament_id
-        }).then(values => {
+      promises.push(fetch(
+          'https://demo.thejoustingpavilion.com/api/v3/games?current_only=1&tournament_id=' + tournament_id
+        ).then(values => {
           // parse array of pairings twice. First time p1 and p2 get switched, so we have one array element for each player individually
           return Promise.resolve(JSON.parse(values)
             .map(item => {
