@@ -64,10 +64,12 @@
     } else {
       // request pairings from joustingpavilion
       promises.push(fetch(
-          'https://demo.thejoustingpavilion.com/api/v3/games?current_only=1&tournament_id=' + tournament_id
-        ).then(values => {
+          'https://thejoustingpavilion.com/api/v3/games?current_only=1&tournament_id=' + tournament_id
+        ).then(res => res.json())
+        .then(values => {
           // parse array of pairings twice. First time p1 and p2 get switched, so we have one array element for each player individually
-          return Promise.resolve(JSON.parse(values)
+          console.log(values);
+          return Promise.resolve(JSON.parse(JSON.stringify(values))
             .map(item => {
               let tmp;
               
@@ -80,7 +82,7 @@
               return item;
             })
             .filter(item => item.p1_id > -1)
-            .concat(JSON.parse(values))
+            .concat(values)
             .sort((a, b) => {
               if (a.p1_name.toUpperCase() > b.p1_name.toUpperCase()) {
                 return 1;

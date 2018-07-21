@@ -1,0 +1,26 @@
+@import "../ThronesDB/theme.css";
+
+@font-face {
+  font-family: 'CloisterBlack';
+  font-weight: normal;
+  font-style: normal;
+  src: url('assets/fonts/CloisterBlack.eot');
+  src: url('assets/fonts/CloisterBlack.eot#iefix') format('embedded-opentype'),
+       url('assets/fonts/CloisterBlack.ttf') format('truetype'),
+       url('assets/fonts/CloisterBlack.woff') format('woff'),
+       url('assets/fonts/CloisterBlack.svg') format('svg');
+}
+
+#pairings {
+  background-image: url('assets/img/logo.png');
+  background-color: #621800;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+#pairings h1 {
+  font-family: CloisterBlack;
+  height: 4rem;
+  font-size: 4rem;
+  line-height: 3rem;
+  text-shadow: 1px 1px #000, -1px 1px #000, 1px -1px #000, -1px -1px #000, 0 0 .2rem #000;
+}
