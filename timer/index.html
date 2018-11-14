@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Timer</title>
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/icons.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div id="jsRequired">Javascript is required for this Site to work.</div>
+  <script>(function () { let el = document.getElementById('jsRequired'); el.parentNode.removeChild(el); }())</script>
+  
+  <div id="timer">
+    <a href="#config">Change config</a>
+  </div>
+
+  <div id="config">
+    <form method="GET" action="#timer">
+      <input type="hidden" name="timer_starts_at" />
+      <div class="set">
+        <label for="theme">Theme</label>
+        <select id="theme" name="theme">
+          <option value="Stahleck-2017" selected>Stahleck</option>
+        </select>
+      </div>
+      <div class="set">
+        <label for="duration">Duration in minutes</label>
+        <input type="number" id="duration" name="duration" value="50" />
+      </div>
+      <div class="set">
+        <label for="end_text">Text after timer ran out</label>
+        <input type="text" id="end_text" name="end_text" value="00:00" />
+      </div>
+      <div class="set">
+        <button type="submit">Submit (timer starts after click on next page)</button>
+      </div>
+    </form>
+    <a href="/#config">Show pairings</a>
+  </div>
+  
+  <script src="/js/helper.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

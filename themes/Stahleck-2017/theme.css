@@ -36,3 +36,8 @@
   border-radius: .2rem;
   z-index: -1;
 }
+#timer video {
+  height: 100%;
+  width: 100%;
+  opacity: .7;
+}

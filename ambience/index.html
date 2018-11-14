@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<body>
+	<!--link rel="stylesheet" href="main.css" /-->
+	<style>
+		@font-face {
+		  font-family: 'Schwabacher';
+		  font-weight: normal;
+		  font-style: normal;
+		  src: url('fonts/schwabacher.eot');
+		  src: url('ambience/fonts/schwabacher.eot#iefix') format('embedded-opentype'),
+		       url('ambience/fonts/schwabacher.ttf') format('truetype'),
+		       url('ambience/fonts/schwabacher.woff') format('woff'),
+		       url('ambience/fonts/schwabacher.svg') format('svg');
+		}
+		html {
+			font-size: 900px;
+		}
+		html, body {
+			background: #000;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			color: #fff;
+		}
+		video {
+			z-index: 30;
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translateX(-50%) translateY(-50%);
+			min-width: 100%;
+			min-height: 100%;
+		}
+		.showInfotext video,
+		.showCountdown video {
+			opacity: .5;
+		}
+		.infotext,
+		.countdown {
+			position: absolute;
+			top: 50%;
+			left: 0;
+			right: 0;
+			transform: translateY(-50%);
+			color: #fff;
+			z-index: 100;
+			font-family: Schwabacher;
+			text-align: center;
+			text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000;
+			display: none;
+		}
+		.infotext {
+			font-size: 250px;
+			line-height: .9;
+		}
+		.showInfotext .infotext,
+		.showCountdown .countdown {
+			display: block;
+		}
+		.minutes,
+		.seconds {
+			position: absolute;
+			top: 0;
+			right: 53%;
+			display: inline-block;
+			text-align: right;
+		}
+		.seconds {
+			right: auto;
+			left: 53%;
+			text-align: left;
+		}
+	</style>
+	<video src="/ambience/out.mp4" autoplay loop></video>
+	<audio src="/ambience/crackling.mp3" loop></audio>
+	<audio src="/ambience/battle.mp3" loop></audio>
+	<div class="countdown"><span class="minutes"></span>:<span class="seconds"></span></div>
+	<div class="infotext">Everybody 6-2 or better, stay here!<br>Further announcements to follow.</div>
+	<script>
+		(function () {
+	  	const url = new URL(location.href);
+	  	const audio = !!url.searchParams.get('audio');
+			const size = url.searchParams.get('size');
+			const minutesEl = document.querySelector('.countdown .minutes');
+			const secondsEl = document.querySelector('.countdown .seconds');
+			const duration = +url.searchParams.get('duration') * 60 * 1000;
+			const starttime = url.searchParams.get('starttime');
+			const targettime = new Date(starttime) * 1 + duration;
+
+			// start music, if url parameter is present
+			if (audio) {
+				console.log('enable audio');
+				document.querySelectorAll('audio').forEach(item => item.play());
+			}
+
+			// if font-size was passed, set it
+			if (size) {
+  			document.documentElement.style.fontSize = size + 'px';
+			}
+
+			// function to update countdown
+			const fn = () => {
+				let timeleft = Math.min(duration, Math.max(0, targettime - Date.now()));
+				minutesEl.innerHTML = Math.floor(timeleft / 60000);
+				secondsEl.innerHTML = ('0' + Math.floor(timeleft / 1000 % 60)).substr(-2);
+				if (timeleft > 0) {
+					requestAnimationFrame(fn);
+				} else {
+					document.body.className = "showInfotext";
+				}
+			}
+			if (!isNaN(duration) && !isNaN(targettime) && duration > 0) {
+				document.body.className = "showCountdown";
+				fn();
+			}
+			if (url.searchParams.get('infotext')) {
+				document.body.className = "showInfotext";
+			}
+		}());
+	</script>
+</body>
+</html>

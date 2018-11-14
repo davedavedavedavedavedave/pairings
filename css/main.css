@@ -26,10 +26,13 @@ h1 {
   top: 0;
   width: 100%;
 }
+#timer:target + #config,
+#timer,
 #pairings:target + #config,
 #pairings {
   display: none;
 }
+#timer:target,
 #pairings:target {
   display: block;
 }

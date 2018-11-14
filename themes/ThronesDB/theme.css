@@ -9,6 +9,7 @@
        url('assets/fonts/Crimson-Text-regular.svg') format('svg');
 }
 
+#timer,
 #pairings {
   position: absolute;
   left: 0;
@@ -23,6 +24,10 @@
   background: #000;
   font-family: Crimson, serif;
 }
+#timer {
+  padding-top: 0;
+}
+#timer > a,
 #pairings > a {
   position: fixed;
   left: 0;
@@ -34,6 +39,12 @@
   z-index: 100;
   padding: .2rem;
 }
+#timer > a[href="#config"],
+#pairings > a[href="#config"] {
+  left: auto;
+  right: 0;
+}
+#timer > a:hover,
 #pairings > a:hover {
   opacity: 1;
 }
@@ -165,6 +176,19 @@
   background: #7a7a7a;
   color: #000;
 }
+.p1_faction.icon-thefreefolk,
+.p1_faction.icon-thefreefolk ~ .p2_faction,
+.p1_faction.icon-thefreefolk ~ .p2_name,
+.p1_faction.icon-thefreefolk + .p1_name {
+  background: #a99560;
+  color: #000;
+}
+.p1_faction.icon-thefreefolk {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: url('assets/img/thefreefolk.png');
+}
 .show_opponent .p1_name {
   border-bottom: none;
   padding-bottom: 0;
@@ -177,4 +201,25 @@
 .show_opponent .p1_faction {
   padding-top: 0;
   line-height: 2.5rem;
+}
+
+.timerEl {
+  text-align: center;
+  font-size: 50vh;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  transform: translateY(-50%);
+}
+.timerEl .seconds,
+.timerEl .minutes {
+  text-align: right;
+  display: inline-block;
+  width: 40%;
+}
+.timerEl .seconds {
+  text-align: left;
+}
+.timerEl.hasEnded {
+  font-size: 10vh;
 }

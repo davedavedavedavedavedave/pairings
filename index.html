@@ -13,6 +13,12 @@
   
   <div id="pairings">
     <a href="#config">Change config</a>
+    <a href="#timer">Show Timer</a>
+  </div>
+  
+  <div id="timer">
+    <a href="#config">Change config</a>
+    <a href="#pairings">Show pairings</a>
   </div>
 
   <div id="config">
@@ -45,6 +51,15 @@
       <div class="set">
         <label for="base_font_size">Base Font Size</label>
         <input type="number" id="base_font_size" name="base_font_size" value="30" min="1" />
+      </div>
+      <hr />
+      <div class="set">
+        <label for="timer_duration">Duration in minutes</label>
+        <input type="number" id="timer_duration" name="timer_duration" value="50" step="any" />
+      </div>
+      <div class="set">
+        <label for="timer_end_text">Text after timer ran out</label>
+        <input type="text" id="timer_end_text" name="timer_end_text" value="Time is up, please finish you games!" />
       </div>
       <div class="set">
         <button type="submit">Submit</button>

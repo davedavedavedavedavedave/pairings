@@ -1,5 +1,36 @@
 (function ($, helper) {
   const url = new URL(location.href);
+
+  // set up timer
+  const timer_duration = url.searchParams.get('timer_duration');
+  const timer_end_text = url.searchParams.get('timer_end_text');
+  const timerContainer = document.getElementById('timer');
+  const timerEl = document.createElement('div');
+  timerEl.className = 'timerEl';
+  timerEl.innerHTML = '<span class="minutes">' + Math.floor(timer_duration) + '</span>:<span class="seconds">' + ('00' + Math.floor(60 * (timer_duration % 1))).substr(-2) + '</span>'
+  timerContainer.appendChild(timerEl);
+
+  const timerClickFn = (e) => {
+    timerEl.removeEventListener('click', timerClickFn);
+    let start = Date.now();
+    let timerFn = () => {
+      let timeLeft = timer_duration * 60 - (Date.now() - start) / 1000;
+
+      if (timeLeft > 0) {
+        timerEl.innerHTML = '<span class="minutes">' + Math.floor(timeLeft / 60) + '</span>:<span class="seconds">' + ('00' + Math.floor(timeLeft % 60)).substr(-2) + '</span>';
+        window.requestAnimationFrame(() => {
+          timerFn();
+        });
+      } else {
+        timerEl.innerHTML = timer_end_text;
+        timerEl.className += ' hasEnded';
+      }
+    }
+    timerFn();
+  };
+  timerEl.addEventListener('click', timerClickFn);
+
+  // set up pairings stuff
   const tournament_id = +url.searchParams.get('tournament_id');
   const theme = url.searchParams.get('theme');
   const file = url.searchParams.get('file');
@@ -68,7 +99,6 @@
         ).then(res => res.json())
         .then(values => {
           // parse array of pairings twice. First time p1 and p2 get switched, so we have one array element for each player individually
-          console.log(values);
           return Promise.resolve(JSON.parse(JSON.stringify(values))
             .map(item => {
               let tmp;
@@ -106,7 +136,7 @@
         html += pairings.map(item => {
             let html = '<li>';
             html += '<span class="table">' + (item.p2_id < 0 ? 'BYE' : item.table_number) + '</span>';
-            html += '<span class="p1_faction icon-' + item.p1_faction.toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
+            html += '<span class="p1_faction icon-' + (item.p1_faction || 'thefreefolk').toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
             html += '<span class="p1_name">' + item.p1_name + '</span>';
             html += '<span class="p2_faction icon-' + (item.p2_faction || '').toLowerCase().replace(/[ ']/g, '').replace(/(the)?nightswatch$/, 'thenightswatch') + '"></span>';
             html += '<span class="p2_name">' + item.p2_name + '</span>';
