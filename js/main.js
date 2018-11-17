@@ -94,10 +94,21 @@
       promises.push(Promise.resolve(JSON.parse(file)));
     } else {
       // request pairings from joustingpavilion
-      promises.push(fetch(
-          'https://thejoustingpavilion.com/api/v3/games?current_only=1&tournament_id=' + tournament_id
+      let getPairings = (currentPage) => {
+        return fetch(
+          'https://thejoustingpavilion.com/api/v3/games?current_only=1&page=' + currentPage + '&tournament_id=' + tournament_id
         ).then(res => res.json())
         .then(values => {
+          if (values.length >= 50) {
+            return getPairings(currentPage + 1).then(nextValues => Promise.resolve(nextValues.concat(values)));
+          } else {
+            return Promise.resolve(values);
+          }
+        });
+      }
+      promises.push(getPairings(1)
+        .then(values => {
+          console.log(values);
           // parse array of pairings twice. First time p1 and p2 get switched, so we have one array element for each player individually
           return Promise.resolve(JSON.parse(JSON.stringify(values))
             .map(item => {
