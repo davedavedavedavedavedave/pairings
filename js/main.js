@@ -96,7 +96,7 @@
       // request pairings from joustingpavilion
       let getPairings = (currentPage) => {
         return fetch(
-          'https://thejoustingpavilion.com/api/v3/games?current_only=1&page=' + currentPage + '&tournament_id=' + tournament_id
+          'https://demo.thejoustingpavilion.com/api/v3/games?current_only=1&page=' + currentPage + '&tournament_id=' + tournament_id
         ).then(res => res.json())
         .then(values => {
           if (values.length >= 50) {
