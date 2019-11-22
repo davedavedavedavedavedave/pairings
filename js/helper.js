@@ -43,7 +43,6 @@ const helper = (function () {
         }
       })
       .map(val => {
-        console.log(val);
         let name = /^[^	]+(	[^	]+)?/.exec(val);
         let faction = /^(?:[^	]*	){2}([^	]+)/.exec(val);
         return {
