@@ -45,7 +45,7 @@ const helper = (function () {
       .map(val => {
         console.log(val);
         let name = /^[^	]+(	[^	]+)?/.exec(val);
-        let faction = /^(?:[^	]*	){3}([^	]+)/.exec(val);
+        let faction = /^(?:[^	]*	){2}([^	]+)/.exec(val);
         return {
           round_number: fileContent.length - 1,
           p1_name: name[0].replace(/	/, ' '),
