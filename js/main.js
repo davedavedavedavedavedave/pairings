@@ -33,7 +33,7 @@
   // set up pairings stuff
   const tournament_id = +url.searchParams.get('tournament_id');
   const theme = url.searchParams.get('theme');
-  const file = url.searchParams.get('file');
+  const file = localStorage.getItem('file'); //url.searchParams.get('file');
   const show_opponent = !!url.searchParams.get('show_opponent');
   const auto_scroll = !!url.searchParams.get('auto_scroll');
   const scroll_speed = +url.searchParams.get('scroll_speed');
@@ -41,6 +41,7 @@
   const pairingEl = document.getElementById('pairings');
 
   document.documentElement.style.fontSize = base_font_size + 'px';
+  localStorage.setItem('file', '');
 
   // function that handles auto scrolling
   const autoScroll = function (el, speed, lastTime, direction) {
@@ -73,7 +74,8 @@
       let reader = new FileReader();
       reader.addEventListener('load', () => {
         // parse file and set hidden input's value
-        document.getElementsByName('file')[0].value = JSON.stringify(helper.parseTourneyMagistrateFile(reader.result));
+        //document.getElementsByName('file')[0].value = JSON.stringify(helper.parseTourneyMagistrateFile(reader.result));
+        localStorage.setItem('file', JSON.stringify(helper.parseTourneyMagistrateFile(reader.result)));
       });
       reader.readAsText(file);
     }
