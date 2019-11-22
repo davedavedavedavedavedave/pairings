@@ -43,6 +43,7 @@ const helper = (function () {
         }
       })
       .map(val => {
+        console.log(val);
         return {
           round_number: fileContent.length - 1,
           p1_name: /^[^	]+(	[^	]+)?/.exec(val)[0].replace(/	/, ' '),
