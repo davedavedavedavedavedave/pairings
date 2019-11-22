@@ -44,10 +44,12 @@ const helper = (function () {
       })
       .map(val => {
         console.log(val);
+        let name = /^[^	]+(	[^	]+)?/.exec(val);
+        let faction = /^(?:[^	]*	){3}([^	]+)/.exec(val);
         return {
           round_number: fileContent.length - 1,
-          p1_name: /^[^	]+(	[^	]+)?/.exec(val)[0].replace(/	/, ' '),
-          p1_faction: /^(?:[^	]*	){3}([^	]+)/.exec(val)[1],
+          p1_name: name[0].replace(/	/, ' '),
+          p1_faction: faction ? faction[1] : '',
           p2_id: 1
         }
       });
